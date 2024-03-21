@@ -72,6 +72,7 @@ $RECYCLE.BIN/
 *.sqlite3
 
 
+
 ############################
 # Misc.
 ############################
@@ -106,6 +107,7 @@ coverage
 ############################
 
 .env
+.envrc
 license.txt
 exports
 .strapi
