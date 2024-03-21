@@ -9,7 +9,7 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
       - PGUSER=${DATABASE_USERNAME}
     volumes:
-      - .././postgres:/var/lib/postgresql/data/pgdata
+      - pgdata:/var/lib/postgresql/data/pgdata
     ports:
       - ${DATABASE_PORT}:5432
     healthcheck:
