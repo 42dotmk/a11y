@@ -2,7 +2,7 @@ services:
   a11y-database:
     image: postgres
     container_name: a11y-database
-    restart: always
+    restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_DB=${DATABASE_NAME}
