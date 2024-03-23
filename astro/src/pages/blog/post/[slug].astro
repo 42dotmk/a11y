@@ -1,9 +1,9 @@
 ---
-import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import DefaultLayout from '../../../layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import { Markdown } from '@astropub/md'
-import { fetchOne, getAbsoluteUrl } from '../../lib/strapi';
-import { Post } from '../../interfaces/page';
+import { fetchOne, getAbsoluteUrl } from '../../../lib/strapi';
+import { Post } from '../../../interfaces/page';
 
 const { slug } = Astro.params;
 

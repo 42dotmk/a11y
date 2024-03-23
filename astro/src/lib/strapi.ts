@@ -42,7 +42,6 @@ export async function fetchApi<T, TResponse = T>({
       url.searchParams.append(key, value);
     });
   }
-  console.log(`Fetching ${url}`);
 
   const res = await fetch(url.toString());
   let data = await res.json();
@@ -59,10 +58,16 @@ export async function fetchApi<T, TResponse = T>({
     data = data[0];
   }
 
-  for (const key of dateKeys) {
-    if (key in data) {
-      console.log(`Converting to date ${key}`)
-      data[key] = new Date(data[key]);
+  if (data) {
+    const items = data.length ? data : [data];
+    
+    for (const item of items) {
+      for (const key of dateKeys) {
+        if (key in item) {
+          console.log(`Converting to date ${key}`)
+          item[key] = new Date(item[key]);
+        }
+      }
     }
   }
 

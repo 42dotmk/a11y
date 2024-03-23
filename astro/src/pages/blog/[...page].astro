@@ -3,7 +3,7 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Card, Pagination } from 'accessible-astro-components'
 import { fetchMany, getAbsoluteUrl } from '../../lib/strapi';
 import { Post } from '../../interfaces/page';
-import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const articles = await fetchMany<Post>({
@@ -31,7 +31,7 @@ const { page } = Astro.props
     <div class="space-content container">
       <h1>Блог</h1>
       <p class="text-2xl">
-        
+        <p class="text-sm"><em>Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em></p>
       </p>
     </div>
   </section>
@@ -43,7 +43,7 @@ const { page } = Astro.props
             <li>
               <Card
                 img={getAbsoluteUrl(post.featuredImage?.url)}
-                url={'/blog/' + post.slug}
+                url={'/blog/post/' + post.slug}
                 title={post.title}
                 footer={`Автор: ${post?.author?.username} | ${post.createdAt.toLocaleString('mk-MK')}`                }
               >
@@ -60,7 +60,7 @@ const { page } = Astro.props
           nextPage={page.url.next ? page.url.next : null}
           lastPage={page.url.next ? `/blog/${Math.round(page.total / page.size)}` : null}
           currentPage={page.currentPage}
-          totalPages={Math.round(page.total / page.size)}
+          totalPages={Math.ceil(page.total / page.size)}
         />
       </div>
     </div>
