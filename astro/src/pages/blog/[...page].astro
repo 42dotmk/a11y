@@ -1,16 +1,18 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Card, Pagination } from 'accessible-astro-components'
-import fetchApi from '../../lib/strapi';
+import { fetchMany, getAbsoluteUrl } from '../../lib/strapi';
 import { Post } from '../../interfaces/page';
 import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const articles = await fetchApi<Post[]>({
+  const articles = await fetchMany<Post>({
     endpoint: 'posts', // the content type to fetch
-    wrappedByKey: 'data', // the key to unwrap the response,
     query: {
-      populate: 'author'
+      populate: [
+        "author",
+        "featuredImage"
+      ]
     }
   });
 
@@ -27,7 +29,7 @@ const { page } = Astro.props
 >
   <section class="my-12">
     <div class="space-content container">
-      <h1>Blog</h1>
+      <h1>Блог</h1>
       <p class="text-2xl">
         
       </p>
@@ -40,9 +42,10 @@ const { page } = Astro.props
           page.data.map((post) => (
             <li>
               <Card
+                img={getAbsoluteUrl(post.featuredImage?.url)}
                 url={'/blog/' + post.slug}
                 title={post.title}
-                footer={'by: ' + post.author?.username}
+                footer={`Автор: ${post?.author?.username} | ${post.createdAt.toLocaleString('mk-MK')}`                }
               >
                 {post?.description}
               </Card>

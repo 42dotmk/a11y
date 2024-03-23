@@ -2,7 +2,7 @@
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import { Markdown } from '@astropub/md'
-import fetchApi from '../../lib/strapi';
+import { fetchOne, getAbsoluteUrl } from '../../lib/strapi';
 import { Post } from '../../interfaces/page';
 
 const { slug } = Astro.params;
@@ -10,13 +10,15 @@ const { slug } = Astro.params;
 let post: Post;
 
 try {
-  post = await fetchApi<Post>({
+  post = await fetchOne<Post>({
     endpoint: 'posts',
-    wrappedByKey: 'data',
     wrappedByList: true,
     query: {
       'filters[slug][$eq]': slug || '',
-      populate: 'author',
+      populate: [
+        'featuredImage',
+        'author'
+      ]
     },
   });
 } catch (error) {
@@ -24,11 +26,13 @@ try {
   return Astro.redirect('/404');
 }
 
+const featuredImage = getAbsoluteUrl(post.featuredImage?.url);
+
 export const prerender = false;
 
 ---
 
-<DefaultLayout title={post.title} description={post.description} url={post.title}>
+<DefaultLayout title={post.title} description={post.description} url={post.title} image={featuredImage}>
   <div class="container">
     <div class="mt-12">
       <Breadcrumbs>
@@ -41,11 +45,12 @@ export const prerender = false;
   <section class="my-12">
     <div class="container">
       <h1>{post.title}</h1><br />
-      <p>By {post?.author?.username}</p>
     </div>
   </section>
   <section class="my-12">
     <div class="container">
+      <img class="featuredImage mb-4" src={featuredImage} alt={post.featuredImage?.alternativeText} />
+      <p class="my-2">Автор: {post?.author?.username} | {post.createdAt.toLocaleString('mk-MK')}</p>
       <Markdown of={post.content} />
     </div>
   </section>
@@ -65,5 +70,11 @@ export const prerender = false;
     @media (min-width: 950px) {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  .featuredImage {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
   }
 </style>
