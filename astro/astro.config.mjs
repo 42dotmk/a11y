@@ -8,6 +8,7 @@ import markdownIntegration from '@astropub/md'
 // https://astro.build/config
 export default defineConfig({
   compressHTML: true,
+  output: 'hybrid',
   integrations: [
     markdownIntegration(),
     mdx(), icon(), tailwind({

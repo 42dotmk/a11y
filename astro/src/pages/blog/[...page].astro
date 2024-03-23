@@ -2,17 +2,21 @@
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Card, Pagination } from 'accessible-astro-components'
 import fetchApi from '../../lib/strapi';
-import type Post from '../../interfaces/page';
+import { Post } from '../../interfaces/page';
+import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro';
 
-export async function getStaticPaths({ paginate }) {
+export const getStaticPaths = (async ({ paginate }) => {
   const articles = await fetchApi<Post[]>({
     endpoint: 'posts', // the content type to fetch
-    wrappedByKey: 'data', // the key to unwrap the response
+    wrappedByKey: 'data', // the key to unwrap the response,
+    query: {
+      populate: 'author'
+    }
   });
 
   console.log(articles);
   return paginate(articles, { pageSize: 6 });
-}
+}) satisfies GetStaticPaths;
 
 const { page } = Astro.props
 ---
@@ -25,25 +29,22 @@ const { page } = Astro.props
     <div class="space-content container">
       <h1>Blog</h1>
       <p class="text-2xl">
-        An example of a blog with dynamic content fetched from <a href="https://jsonplaceholder.typicode.com/posts"
-          >JSONPlaceholder</a
-        > using the title, body and userId. The Accessible Astro Card Component is used here to display al the posts.
+        
       </p>
     </div>
   </section>
   <section class="my-12">
     <div class="container">
-      <p class="text-sm"><em>Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em></p>
       <ul class="my-3">
         {
           page.data.map((post) => (
             <li>
               <Card
-                url={'/blog/' + post.attributes.slug}
-                title={post.attributes.title}
-                footer={'userId:' + post.userId}
+                url={'/blog/' + post.slug}
+                title={post.title}
+                footer={'by: ' + post.author?.username}
               >
-                {post.body}
+                {post?.description}
               </Card>
             </li>
           ))

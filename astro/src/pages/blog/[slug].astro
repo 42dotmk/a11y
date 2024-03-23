@@ -3,47 +3,50 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import { Markdown } from '@astropub/md'
 import fetchApi from '../../lib/strapi';
-import type Post from '../../interfaces/page';
+import { Post } from '../../interfaces/page';
 
-export async function getStaticPaths() {
-  const articles = await fetchApi<Post[]>({
-    endpoint: 'posts', // the content type to fetch
-    wrappedByKey: 'data', // the key to unwrap the response,
+const { slug } = Astro.params;
+
+let post: Post;
+
+try {
+  post = await fetchApi<Post>({
+    endpoint: 'posts',
+    wrappedByKey: 'data',
+    wrappedByList: true,
     query: {
-      populate: 'author'
-    }
+      'filters[slug][$eq]': slug || '',
+      populate: 'author',
+    },
   });
-
-  return articles.map((post) => {
-    return {
-      params: { post: post.attributes.title.replaceAll(' ', '-').toLowerCase() },
-      props: { post },
-    }
-  })
+} catch (error) {
+  console.error(error);
+  return Astro.redirect('/404');
 }
 
-const { post } = Astro.props
+export const prerender = false;
+
 ---
 
-<DefaultLayout title={post.attributes.title} description={post.body} url={post.title}>
+<DefaultLayout title={post.title} description={post.description} url={post.title}>
   <div class="container">
     <div class="mt-12">
       <Breadcrumbs>
         <BreadcrumbsItem href="/" label="Home" />
         <BreadcrumbsItem href="/blog" label="Blog" />
-        <BreadcrumbsItem currentPage={true} label={post.attributes.title} />
+        <BreadcrumbsItem currentPage={true} label={post.title} />
       </Breadcrumbs>
     </div>
   </div>
   <section class="my-12">
     <div class="container">
-      <h1>{post.attributes.title}</h1><br />
-      <p>By {post.attributes.author.data.attributes.username}</p>
+      <h1>{post.title}</h1><br />
+      <p>By {post?.author?.username}</p>
     </div>
   </section>
   <section class="my-12">
     <div class="container">
-      <Markdown of={post.attributes.content} />
+      <Markdown of={post.content} />
     </div>
   </section>
 </DefaultLayout>

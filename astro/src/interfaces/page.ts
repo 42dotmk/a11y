@@ -1,4 +1,4 @@
-export default interface Page {
+export interface Page {
   id: number;
   attributes: {
     title: string;
@@ -11,15 +11,20 @@ export default interface Page {
   };
 }
 
-export default interface Post {
+export interface Post {
   id: number;
-  attributes: {
-    title: string;
-    description: string;
-    content: string;
-    slug: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-  };
+  title: string;
+  description: string;
+  content: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  author?: User;
+}
+
+export interface User {
+  id: number;
+  username: string;
+  email: string;
 }
