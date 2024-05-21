@@ -1,0 +1,80 @@
+---
+import DefaultLayout from '../../../layouts/DefaultLayout.astro'
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import { Markdown } from '@astropub/md'
+import { fetchOne, getAbsoluteUrl } from '../../../lib/strapi';
+import { Post } from '../../../interfaces/page';
+
+const { slug } = Astro.params;
+
+let post: Post;
+
+try {
+  post = await fetchOne<Post>({
+    endpoint: 'posts',
+    wrappedByList: true,
+    query: {
+      'filters[slug][$eq]': slug || '',
+      populate: [
+        'featuredImage',
+        'author'
+      ]
+    },
+  });
+} catch (error) {
+  console.error(error);
+  return Astro.redirect('/404');
+}
+
+const featuredImage = getAbsoluteUrl(post.featuredImage?.url);
+
+export const prerender = false;
+
+---
+
+<DefaultLayout title={post.title} description={post.description} url={post.title} image={featuredImage}>
+  <div class="container">
+    <div class="mt-12">
+      <Breadcrumbs>
+        <BreadcrumbsItem href="/" label="Home" />
+        <BreadcrumbsItem href="/blog" label="Blog" />
+        <BreadcrumbsItem currentPage={true} label={post.title} />
+      </Breadcrumbs>
+    </div>
+  </div>
+  <section class="my-12">
+    <div class="container">
+      <h1>{post.title}</h1><br />
+    </div>
+  </section>
+  <section class="my-12">
+    <div class="container">
+      <img class="featuredImage mb-4" src={featuredImage} alt={post.featuredImage?.alternativeText} />
+      <p class="my-2">Автор: {post?.author?.username} | {post.createdAt.toLocaleString('mk-MK')}</p>
+      <Markdown of={post.content} />
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4rem;
+
+    @media (min-width: 550px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
+    }
+
+    @media (min-width: 950px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .featuredImage {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+  }
+</style>
