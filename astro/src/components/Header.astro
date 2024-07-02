@@ -1,65 +1,28 @@
 ---
 import Navigation from '../components/Navigation.astro'
 import { SkipLinks } from 'accessible-astro-components'
-import { Icon } from 'astro-icon/components'
 ---
 
 <header>
   <SkipLinks />
-  <Navigation>
+  <Navigation class="!font-bold">
     <li class="menu-item">
-      <a href="/">Home</a>
-    </li>
-    <li class="menu-item">
-      <a href="/blog/">Blog</a>
-    </li>
-    <li class="menu-item has-dropdown">
-      <button aria-haspopup="true" aria-expanded="false">Example Pages</button>
-      <ul class="dropdown-menu">
-        <li class="submenu-item">
-          <a href="/mdx-page/">MDX Page</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/markdown-page/">Markdown Page</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/accessible-components">Accessible Components</a>
-        </li>
-      </ul>
+      <a class="!text-dark hover:!text-primary-300 dark:!text-neutral dark:hover:!text-secondary-200" href="/">ПОЧЕТНА</a>
     </li>
     <li class="menu-item">
-      <a href="https://accessible-astro.dev" title="external link" rel="external noopener noreferrer">External Link</a>
+      <a class="!text-dark  hover:!text-primary-300 dark:!text-neutral dark:hover:!text-secondary-200" href="/zaNas">ЗА НАС</a>
     </li>
-    <li class="menu-item type-icon">
-      <a href="https://github.com/markteekman/accessible-astro-starter" title="Go to the GitHub page">
-        <Icon name="ion:logo-github" />
-      </a>
+    <li class="menu-item">
+      <a class="!text-dark  hover:!text-primary-300 dark:!text-neutral dark:hover:!text-secondary-200" href="/nastava">НАСТАВА</a>
+    </li>
+    <li class="menu-item">
+      <a class="!text-dark  hover:!text-primary-300 dark:!text-neutral dark:hover:!text-secondary-200" href="/uslugi">УСЛУГИ</a>
+    </li>
+    <li class="menu-item">
+      <a class="!text-dark  hover:!text-primary-300 dark:!text-neutral dark:hover:!text-secondary-200" href="/proekti">ПРОЕКТИ</a>
+    </li>
+    <li class="menu-item">
+      <a class="!text-dark  hover:!text-primary-300 dark:!text-neutral dark:hover:!text-secondary-200" href="/kontakt">КОНТАКТ</a>
     </li>
   </Navigation>
 </header>
-
-<style lang="scss" is:global>
-  @use '../assets/scss/base/outline' as *;
-
-  header {
-    .type-icon a {
-      display: block;
-
-      [data-icon] {
-        height: auto;
-        margin-top: -4px;
-        width: 30px;
-
-        path {
-          fill: var(--action-color);
-        }
-      }
-
-      &:hover {
-        [data-icon] path {
-          fill: var(--action-color-state);
-        }
-      }
-    }
-  }
-</style>
