@@ -1,0 +1,36 @@
+---
+const {
+  img,
+  url,
+  title,
+  footer
+} = Astro.props
+
+let hash = Math.floor(Math.random() * 1000)
+let date = footer.match(/\d+\.\d+\.\d+/)[0]
+---
+<style>
+.card {
+  box-shadow: 15px 10px #0084E2;
+  border: solid white 12px;
+}
+
+</style>
+<div class="rounded-2xl bg-white overflow-hidden card">
+  <img class="rounded-t-2xl w-fll h-72" src={img}/>
+  <div class="pt-4 pr-5 pl-5 h-full flex flex-col mb-2">
+    <p class="text-gray-500 text-xs mb-2">{date}</p>
+    <p id=`description-${hash}` class="font-bold text-sm mb-9/10"><slot/></p>
+  </div>
+    <button class="w-2/3 mx-4 mt-auto font-bold bg-blue-500 pt-3 pr-5 text-white text-lg rounded-2xl">Прочитај повеќе</button>
+</div>
+
+<script define:vars={{hash}}>
+  const maxDesciptionLength = 110;
+  let descriptionElement = document.getElementById(`description-${hash}`)
+  let descriptionText = descriptionElement.innerText;
+  if(descriptionText.length > maxDesciptionLength) {
+   descriptionElement.innerText = descriptionText.substring(0, maxDesciptionLength) + "..."
+  }
+</script>
+
