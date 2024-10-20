@@ -4,10 +4,24 @@ import Hero from '../components/Hero.astro'
 import Feature from '../components/Feature.astro'
 import Counter from '../components/Counter.astro'
 import ContentMedia from '../components/ContentMedia.astro'
+import Testimonial from '../components/Testimonial.astro'
+import ana from '../assets/img/ana.svg'
 ---
 
 <DefaultLayout title="Home">
   <Hero />
+
+<section class="flex flex-col items-center">
+  <h2>СВЕДОШТВА</h2>
+  <div class="flex flex-wrap w-full gap-x-16 gap-y-8 justify-center mt-10 px-10 lg:p-0">
+    <Testimonial testimonial="Се работи за исклучително квалитетно училиште со прекрасни наставници, кои се постојано тука за развојот на децата." author="Ана Стојанова" image={ana} color="blue"/>
+    <Testimonial testimonial="Откога го запишав моето дете во ОУРЦ Св. Климент Охридски, секој ден доаѓа дома со поголемо знаење и повеќе вештини." author="Мартин Пејков" image={ana} color="purple"/>
+    <Testimonial testimonial="Мислев дека нема решение за вистински развој на моето дете, ама излезе дека не сум во право кога го запишав тука." author="Стојан Марковски" image={ana} color="emerald"/>
+    <Testimonial testimonial="Одлични наставници со голема емпатија и волја за предавање, кои успеваат да го направат развојот на децата побрз." author="Марија Ангелеска" image={ana} color="orange"/>
+  </div>
+</section>
+
+
   <section class="my-64">
     <div class="container">
       <h2 class="mb-16 text-6xl">Features</h2>

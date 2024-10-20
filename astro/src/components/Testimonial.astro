@@ -1,0 +1,16 @@
+---
+import '@astrojs/tailwind/base.css'
+import '../assets/scss/globals.scss'
+import { Image } from 'astro:assets';
+
+const { testimonial, author, image, color } = Astro.props;
+---
+<div class=`w-full lg:w-[45%] bg-${color}-300 rounded-xl text-slate-50 font-bold shadow-md`>
+    <div class=`bg-${color}-500 rounded-xl p-5 pb-10`>
+        <p>{testimonial}</p>
+    </div>
+    <footer class="w-full flex flex-row justify-between items-end -translate-y-6 px-5">
+        <p>{author}</p>
+        <Image src={image} alt={author} class="rounded-lg" height={100}  width={100}/>
+    </footer>
+</div>

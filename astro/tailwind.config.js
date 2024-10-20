@@ -1,6 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  safelist: [
+    'bg-purple-300',
+    'bg-purple-500',
+    'bg-orange-300',
+    'bg-orange-500',
+    'bg-emerald-300',
+    'bg-emerald-500',
+    'bg-blue-300',
+    'bg-blue-500',
+  ],
+
   theme: {
     extend: {
       colors: {
