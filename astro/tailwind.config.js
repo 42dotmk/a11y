@@ -4,10 +4,10 @@ module.exports = {
   safelist: [
     'bg-purple-300',
     'bg-purple-500',
-    'bg-orange-300',
-    'bg-orange-500',
-    'bg-emerald-300',
-    'bg-emerald-500',
+    'bg-green-300',
+    'bg-green-500',
+    'bg-turquoise-300',
+    'bg-turquoise-500',
     'bg-blue-300',
     'bg-blue-500',
   ],
@@ -15,6 +15,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        black: '#000000',
+        white: '#FFFFFF',
+        blue: {
+          300: '#0084E288',
+          500: '#0084E2FF'
+        },
+        purple: {
+          300: '#5A30FF88',
+          500: '#5A30FFFF',
+        },
+        green: {
+          300: '#00C71488',
+          500: '#00C714FF',
+        },
+        turquoise: {
+          300: '#80EFE9',
+          500: '#00DFD2',
+        },
         primary: {
           100: 'hsl(276, 100%, 79%)',
           200: 'hsl(276, 79%, 69%)',
