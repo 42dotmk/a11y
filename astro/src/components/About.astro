@@ -1,0 +1,25 @@
+---
+import AboutCard from './AboutCard.astro'
+import { fetchMany, getAbsoluteUrl } from '../lib/strapi';
+const aboutCards = await fetchMany({endpoint: "abouts", query: {populate: "*"}})
+---
+<style is:global>
+.about {
+ width:100%;
+}
+.about>div{
+  display: flex;
+}
+.about div:nth-child(even) {
+ flex-direction: row-reverse;
+}
+</style>
+<h1 class="m-auto w-fit pt-3">ЗА НАС</h1>
+<div class="width-full">
+{
+aboutCards.map((card, index)=>(
+<AboutCard index=`${index + 1}` color=`${card.color}` title=`${card.title}` description=`${card.description}` url=`${getAbsoluteUrl(card.image.url)}`/>
+))
+}
+</div>
+
