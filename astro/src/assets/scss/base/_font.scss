@@ -40,6 +40,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Kapak';
+  src: local('Kapak Bold'), url('/fonts/Kapak.woff2') format('woff2'), url('/fonts/Kapak.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   font-family: var(--font-family-default);
   text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;

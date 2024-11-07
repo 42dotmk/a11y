@@ -48,6 +48,9 @@ module.exports = {
           DEFAULT: 'hsl(240, 4%, 9%)',
         },
       },
+      fontFamily: {
+        kapak: ['Kapak'],
+      },
     },
   },
   plugins: [],
