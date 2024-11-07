@@ -55,15 +55,12 @@ import logo from '../assets/img/logo.webp'
     }
 
     const checkMenuSize = () => {
-      const mainNavWidth = mainNav.getBoundingClientRect().width
-      const desktopMenuWidth = document.querySelector('.desktop-menu').getBoundingClientRect().width
-      const logoWidthBuffer = 300
-      const totalMenuWidth = Math.round(desktopMenuWidth) + logoWidthBuffer
+      const isMobile = window.innerWidth <= 720;
 
-      if (totalMenuWidth >= mainNavWidth) {
+      if (isMobile) {
         mainNav.classList.remove('is-desktop')
         mainNav.classList.add('is-mobile')
-      } else if (totalMenuWidth <= mainNavWidth) {
+      } else {
         mainNav.classList.add('is-desktop')
         mainNav.classList.remove('is-mobile')
       }
@@ -253,10 +250,7 @@ import logo from '../assets/img/logo.webp'
       }
 
       .desktop-menu {
-        visibility: hidden;
-        z-index: -99;
-        position: absolute;
-        left: 0;
+        display: none;
       }
 
       .responsive-toggle {
