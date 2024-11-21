@@ -1,18 +1,37 @@
 ---
-import CallToAction from './CallToAction.astro'
-
-const currentYear = new Date().getFullYear()
 ---
 
-<footer>
-  <CallToAction />
-  <section class="py-8">
-    <div class="container">
-      <p>
-        &copy; {currentYear} - Starter Theme for <a href="https://astro.build/">Astro</a>. Made with ❤️ by <a
-          href="https://github.com/markteekman">Mark Teekman</a
-        >.
-      </p>
+<footer class="bg-[#0084E2] p-6 text-white">
+  <div class="md:grid md:grid-cols-3 md:gap-y-3 [&>*]:mt-8">
+     <img class="mx-auto md:mx-0" src="images/logo.png" width="190" height="120">
+     <h1 class="col-start-2 text-2xl self-end mx-auto hidden md:block">Врски</h1>
+    <div class="flex flex-column">
+      <p class="font-bold">Основното училиште со ресурсен центар Св. Климент Охридски - Ново Село, Струмица е јавна институција, во која се организира и реализира воспитание и образование на учениците со попречености, задолжително основно образование, девет години за сите деца кои до крајот на календарската година ќе наполнат шест години.</p>
     </div>
-  </section>
+    <div class="flex-col gap-y-3 mx-auto hidden md:flex">
+        <a class="!no-underline !text-inherit font-medium">ПОЧЕТНА</a>
+        <a class="!no-underline !text-inherit font-medium">ЗА НАС</a>
+        <a class="!no-underline !text-inherit font-medium">НАСТАВА</a>
+        <a class="!no-underline !text-inherit font-medium">УСЛУГИ</a>
+        <a class="!no-underline !text-inherit font-medium">ПРОЕКТИ</a>
+        <a class="!no-underline !text-inherit font-medium">КОНТАК</a>
+    </div>
+    <h1 class="text-2xl self-end row-start-1 col-start-3">Контакт информации</h1>
+    <div class="flex flex-col gap-y-3">
+        <span><a class="!no-underline !text-inherit grid grid-cols-[32px_1fr] gap-x-4" href="mailto:info@yahoo.com"><img src="/icons/material-mail-outline.svg" class="m-auto inline h-[2em] align-middle"/>info@yahoo.com</a></span>
+        <span><a class="!no-underline !text-inherit grid grid-cols-[32px_1fr] gap-x-4" href="tel:+38923671563"><img src="/icons/material-phone-outline.svg" class="m-auto inline h-[2em] align-middle"/>+389 2 367 1563</a></span>
+        <span><a class="!no-underline !text-inherit grid grid-cols-[32px_1fr] gap-x-4"><img src="/icons/material-gps-outline.svg" class="m-auto inline h-[2em] align-middle"/><p>+ул. Павел Шатев бр. 42,
+    Ново Село, Струмица,
+    Република Македонија</p></a></span>
+        <span><a class="!no-underline !text-inherit grid grid-cols-[32px_1fr] gap-x-4"><img src="/icons/material-facebook-outline.svg" class="m-auto inline h-[2em] align-middle"/>Ourc Sveti Kliment Ohridski</a></span>
+    </div>
+    <div class="flex flex-col gap-y-2 items-end">
+      <h1 class="w-full">Е-Билтен</h1>
+      <input class="placeholder-blue-500 h-16 rounded-2xl p-4 placeholder:text-xl w-full" placeholder="Име и презиме"/>
+      <input class="placeholder-blue-500 h-16 rounded-2xl p-4 placeholder:text-xl w-full" placeholder="Е-пошта"/>
+      <textarea class="placeholder-blue-500 rounded-2xl p-4 placeholder:text-xl w-full" placeholder="Напиши порака"/>
+      <button class="bg-teal-400 rounded-2xl text-xl font-bold w-full lg:w-52">Прати порака</button>
+    </div>
+  </div>
+  <p class="text-center mt-10">2024 ОУРЦ Св. Климент Охридски - Ново Село, Струмица. Сите права се задржани.</p>
 </footer>
