@@ -4,12 +4,20 @@ module.exports = {
   safelist: [
     'bg-purple-300',
     'bg-purple-500',
-    'bg-green-300',
-    'bg-green-500',
-    'bg-turquoise-300',
-    'bg-turquoise-500',
+    'bg-orange-300',
+    'bg-orange-500',
+    'bg-emerald-300',
+    'bg-emerald-500',
     'bg-blue-300',
     'bg-blue-500',
+    'bg-a11y-purple-300',
+    'bg-a11y-purple-500',
+    'bg-a11y-green-300',
+    'bg-a11y-green-500',
+    'bg-a11y-turquoise-300',
+    'bg-a11y-turquoise-500',
+    'bg-a11y-blue-300',
+    'bg-a11y-blue-500',
   ],
 
   theme: {
@@ -17,19 +25,19 @@ module.exports = {
       colors: {
         black: '#000000',
         white: '#FFFFFF',
-        blue: {
+        'a11y-blue': {
           300: '#0084E288',
           500: '#0084E2FF'
         },
-        purple: {
+        'a11y-purple': {
           300: '#5A30FF88',
           500: '#5A30FFFF',
         },
-        green: {
+        'a11y-green': {
           300: '#00C71488',
           500: '#00C714FF',
         },
-        turquoise: {
+        'a11y-turquoise': {
           300: '#80EFE9',
           500: '#00DFD2',
         },
