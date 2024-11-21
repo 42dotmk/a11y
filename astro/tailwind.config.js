@@ -10,11 +10,37 @@ module.exports = {
     'bg-emerald-500',
     'bg-blue-300',
     'bg-blue-500',
+    'bg-a11y-purple-300',
+    'bg-a11y-purple-500',
+    'bg-a11y-green-300',
+    'bg-a11y-green-500',
+    'bg-a11y-turquoise-300',
+    'bg-a11y-turquoise-500',
+    'bg-a11y-blue-300',
+    'bg-a11y-blue-500',
   ],
 
   theme: {
     extend: {
       colors: {
+        black: '#000000',
+        white: '#FFFFFF',
+        'a11y-blue': {
+          300: '#0084E288',
+          500: '#0084E2FF'
+        },
+        'a11y-purple': {
+          300: '#5A30FF88',
+          500: '#5A30FFFF',
+        },
+        'a11y-green': {
+          300: '#00C71488',
+          500: '#00C714FF',
+        },
+        'a11y-turquoise': {
+          300: '#80EFE9',
+          500: '#00DFD2',
+        },
         primary: {
           100: 'hsl(276, 100%, 79%)',
           200: 'hsl(276, 79%, 69%)',
