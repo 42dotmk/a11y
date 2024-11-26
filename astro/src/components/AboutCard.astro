@@ -1,0 +1,25 @@
+---
+const {url, title, description, index, color} = Astro.props
+const shadowDirection = index % 2 ? "8px" : "-8px"
+const secondShadowDirection = index % 2 ? "20px" : "-20px"
+---
+
+<style define:vars={{color, shadowDirection, secondShadowDirection}}>
+.about-card {
+  border: var(--color) solid 5px;
+  box-shadow: var(--shadowDirection) 8px white,
+  var(--secondShadowDirection) 20px var(--color)
+  ;
+}
+
+</style>
+  <div class="width-full items-center flex flex-col md:flex-row max-w-5xl m-auto my-10 p-6 md:even:flex-row-reverse">
+
+  <img class="about-card w-2/3 rounded-2xl overflow-hidden" src={url}/>
+  <h1 style=`color: ${color}` class="mr-10 ml-12 pt-4">#{index}</h1>
+  <div class="w-1/2" >
+    <h1>{title}</h1>
+    <p>{description}</p>
+  </div>
+</div>
+

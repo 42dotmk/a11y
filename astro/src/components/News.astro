@@ -1,0 +1,14 @@
+---
+import { fetchMany, getAbsoluteUrl } from '../lib/strapi';
+import Card from './Card.astro'
+const posts = await fetchMany({endpoint: "posts", query: {populate: "*"}})
+---
+<h1 class="m-auto w-fit">ВЕСТИ</h1>
+<div class="flex flex-col md:flex-row m-auto max-w-5xl justify-between w-1/1">
+{
+posts.map(post=>(
+<Card title=`${post.title}` img=`${getAbsoluteUrl(post.featuredImage?.url)}` footer={`Автор: ${post?.author?.username} | ${post.createdAt.toLocaleString('mk-MK')}`}>{post?.description}</Card>
+))
+}
+</div>
+

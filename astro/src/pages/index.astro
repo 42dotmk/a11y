@@ -6,6 +6,8 @@ import Counter from '../components/Counter.astro'
 import ContentMedia from '../components/ContentMedia.astro'
 import Testimonial from '../components/Testimonial.astro'
 import ana from '../assets/img/ana.svg'
+import About from '../components/About.astro'
+import News from '../components/News.astro'
 ---
 
 <DefaultLayout title="Home">
@@ -20,7 +22,8 @@ import ana from '../assets/img/ana.svg'
     <Testimonial testimonial="Одлични наставници со голема емпатија и волја за предавање, кои успеваат да го направат развојот на децата побрз." author="Марија Ангелеска" image={ana} color="orange"/>
   </div>
 </section>
-
+  <About />
+  <News />
 
   <section class="my-64">
     <div class="container">
