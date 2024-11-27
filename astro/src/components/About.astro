@@ -16,10 +16,6 @@ const aboutCards = await fetchMany({endpoint: "abouts", query: {populate: "*"}})
 </style>
 <h1 class="m-auto w-fit pt-3">ЗА НАС</h1>
 <div class="width-full">
-{
-aboutCards.map((card, index)=>(
-<AboutCard index=`${index + 1}` color=`${card.color}` title=`${card.title}` description=`${card.description}` url=`${getAbsoluteUrl(card.image.url)}`/>
-))
-}
+
 </div>
 

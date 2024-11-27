@@ -1,0 +1,15 @@
+---
+import background from '../assets/img/statistic-background.svg'
+import { Image } from 'astro:assets'
+import StatiscticsCard from './StatiscticsCard.astro'
+---
+
+<div class="h-28 text-center mt-28 relative mb-72">
+    <Image src={background} alt="Background" class="inline-block"/>
+   <div class="flex gap-5 absolute w-full justify-evenly mt-32 mx-8" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+    <StatiscticsCard count={2} label="ГОДИНИ"/>
+    <StatiscticsCard count={14} label="ПРОЕКТИ"/>
+    <StatiscticsCard count={7} label="СОРАБОТКИ"/>
+    <StatiscticsCard count={11} label="НАСТАНИ"/>
+   </div>
+</div>
